@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Sets a clean title in the browser tab
-st.set_page_config(page_title="S1 Project", layout="centered")
+st.set_page_config(page_title="Rawan Streamlit", layout="centered")
 
 st.title("Rawan's Streamlit App")
 
