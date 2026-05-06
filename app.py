@@ -3,7 +3,7 @@ import streamlit as st
 # Sets a clean title in the browser tab
 st.set_page_config(page_title="S1 Project", layout="centered")
 
-st.title("Interactive Text Analysis 🚀")
+st.title("Rawan's Analysis Tool")
 
 # A simple, clean input box
 user_input = st.text_input("Enter your text below:", placeholder="Type here...")
