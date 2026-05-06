@@ -1,22 +1,37 @@
 import streamlit as st
 
-# Sets a clean title in the browser tab
-st.set_page_config(page_title="Rawan Streamlit", layout="centered")
+# Page configuration
+st.set_page_config(page_title="Rawan's Text Lab", layout="centered")
 
-st.title("Rawan's Streamlit App")
+st.title("Simple Text Analyzer ✨")
 
-# A simple, clean input box
-user_input = st.text_input("Enter your text below:", placeholder="Type here...")
+# User Input
+user_input = st.text_input("Enter a sentence:", placeholder="How are you feeling today?")
 
 if user_input:
-    # Use columns to keep the output small and side-by-side
-    col1, col2 = st.columns(2)
+    # 1. Basic Stats (Your original features)
+    words = len(user_input.split())
+    chars = len(user_input)
     
-    with col1:
-        st.metric("Words", len(user_input.split()))
+    # 2. Simple Mood Logic (The "New" Thing)
+    # We check for basic keywords to guess the mood
+    positive_words = ['good', 'happy', 'great', 'amazing', 'love', 'best']
+    negative_words = ['bad', 'sad', 'angry', 'hate', 'worst', 'fail']
     
-    with col2:
-        st.metric("Characters", len(user_input))
-        
-    # Displays the final result in a subtle box
-    st.info(f"**Processed Output:** {user_input}") 
+    mood = "Neutral 😐"
+    if any(word in user_input.lower() for word in positive_words):
+        mood = "Positive 😊"
+    elif any(word in user_input.lower() for word in negative_words):
+        mood = "Negative 😔"
+
+    # 3. Displaying everything cleanly
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Words", words)
+    col2.metric("Characters", chars)
+    col3.metric("Mood", mood)
+
+    # 4. Fun "Mirror" Effect
+    st.write("---")
+    st.subheader("Your Text Mirror")
+    st.info(user_input[::-1]) # This reverses the text
+    st.caption("Above is your text written backwards!")
